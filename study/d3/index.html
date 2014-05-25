@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>D3 Study</title>
+  <meta charset="utf-8">
+  <script src="../../lib/d3.v3.min.js"></script>
+  <style>
+  .chart div{background-color: steelblue; text-align: right; margin: 1px; color: #fff;}
+  </style>
+</head>
+<body>
+  <div class="chart">
+  </div>
+  <script>
+  (function(){
+    var data = [100,299,188,387];
+    var chart = d3.select('.chart');
+    var bar = chart.selectAll('div');
+    var barUpdate = bar.data(data);
+    var barEnter = barUpdate.enter().append('div');
+    var range = d3.scale.linear().domain([0, d3.max(data)]).range([0, 100]);
+    barEnter.style('width', function(d){
+      return range(d) + '%';
+    }).text(function(d){
+      return range(d).toFixed(2) + '%';
+    });
+  })();
+  
+  </script>
+</body>
+</html>
